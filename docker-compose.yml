@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth
+    ports:
+      - "5431:5432"
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - "6371:6379"
+
+  app:
+    build: .
+    working_dir: /app/preview
+    command: "./startup.sh"
+    ports:
+      - 5000:5000
+    volumes:
+      - ./:/app/preview
+      - /usr/share/container_build:/app/preview/._bb_/container_build
+      - /usr/share/elements_build:/app/preview/._bb_/elements_emulator/dist
+    depends_on:
+      - postgres
+      - redis
