@@ -19,7 +19,7 @@ services:
 
   app:
     build: .
-    working_dir: /app/preview
+    working_dir: $home/app/preview
     command:
       - sh
       - -c
@@ -31,9 +31,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./:/app/preview
-      - /usr/share/container_build:/app/preview/._bb_/container_build
-      - /usr/share/elements_build:/app/preview/._bb_/elements_emulator/dist
+      - ./:$home/app/preview
     depends_on:
       - postgres
       - redis
