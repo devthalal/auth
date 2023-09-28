@@ -2,8 +2,8 @@
   "name": "auth",
   "type": "package",
   "source": {
-    "https": "",
-    "ssh": "",
+    "https": "https://github.com/devthalal/auth.git",
+    "ssh": "git@github.com:devthalal/auth.git",
     "branch": "block_auth"
   },
   "dependencies": {
